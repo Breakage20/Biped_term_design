@@ -1,0 +1,164 @@
+<?xml version="1.0" ?>
+<robot name="biped" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:include filename="$(find biped_description)/urdf/materials.xacro"/>
+    <xacro:include filename="$(find biped_description)/urdf/biped.trans"/>
+    <xacro:include filename="$(find biped_description)/urdf/biped.gazebo"/>
+    <link name="world"/>
+    <link name="base_link">
+        <inertial>
+            <origin rpy="0 0 0" xyz="0.005621327821758353 0.015721228739773975 -1.0465477887814689e-05"/>
+            <mass value="1"/>
+            <inertia ixx="0.031387" ixy="0.001206" ixz="-0.0" iyy="0.342069" iyz="-2e-06" izz="0.354706"/>
+        </inertial>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="package://biped_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+            <material name="silver"/>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="package://biped_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="UP_P_1">
+        <inertial>
+            <origin rpy="0 0 0" xyz="-2.3592239273284576e-16 5.587886569027426e-14 -0.05397028252227504"/>
+            <mass value="0.35203260631893807"/>
+            <inertia ixx="0.00134" ixy="0.0" ixz="0.0" iyy="0.001395" iyz="-0.0" izz="0.000192"/>
+        </inertial>
+        <visual>
+            <origin rpy="0 0 0" xyz="0.1141 -0.0 -0.0"/>
+            <geometry>
+                <mesh filename="package://biped_description/meshes/UP_P_1.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+            <material name="silver"/>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0.1141 -0.0 -0.0"/>
+            <geometry>
+                <mesh filename="package://biped_description/meshes/UP_P_1.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="UP_L_1">
+        <inertial>
+            <origin rpy="0 0 0" xyz="3.0531133177191805e-16 5.58744247981758e-14 -0.05397045116300229"/>
+            <mass value="0.35203260631893807"/>
+            <inertia ixx="0.00134" ixy="-0.0" ixz="-0.0" iyy="0.001395" iyz="-0.0" izz="0.000192"/>
+        </inertial>
+        <visual>
+            <origin rpy="0 0 0" xyz="-0.1281 -0.0 2.6e-05"/>
+            <geometry>
+                <mesh filename="package://biped_description/meshes/UP_L_1.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+            <material name="silver"/>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="-0.1281 -0.0 2.6e-05"/>
+            <geometry>
+                <mesh filename="package://biped_description/meshes/UP_L_1.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="Down_P_1">
+        <inertial>
+            <origin rpy="0 0 0" xyz="-0.030998642228740172 1.8867844062555403e-09 -0.08828312763207233"/>
+            <mass value="0.15173834029450825"/>
+            <inertia ixx="0.001065" ixy="-0.0" ixz="0.0" iyy="0.001071" iyz="0.0" izz="3.1e-05"/>
+        </inertial>
+        <visual>
+            <origin rpy="0 0 0" xyz="0.0831 0.0 0.165"/>
+            <geometry>
+                <mesh filename="package://biped_description/meshes/Down_P_1.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+            <material name="silver"/>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0.0831 0.0 0.165"/>
+            <geometry>
+                <mesh filename="package://biped_description/meshes/Down_P_1.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <link name="Down_L_1">
+        <inertial>
+            <origin rpy="0 0 0" xyz="-0.030998641899136897 -4.192344955897824e-09 -0.08829847602769825"/>
+            <mass value="0.15170131913358528"/>
+            <inertia ixx="0.001065" ixy="-0.0" ixz="0.0" iyy="0.001071" iyz="0.0" izz="3.1e-05"/>
+        </inertial>
+        <visual>
+            <origin rpy="0 0 0" xyz="-0.1591 -0.0 0.165026"/>
+            <geometry>
+                <mesh filename="package://biped_description/meshes/Down_L_1.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+            <material name="silver"/>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="-0.1591 -0.0 0.165026"/>
+            <geometry>
+                <mesh filename="package://biped_description/meshes/Down_L_1.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+    </link>
+    <joint name="grouding" type="prismatic">
+        <parent link="world"/>
+        <child link="base_link"/>
+        <origin rpy="0 0 0" xyz="0 0 1"/>
+        <axis xyz="0 0 1"/>
+        <limit effort="0" lower="-5.0" upper="5.0" velocity="3.0"/>
+        <dynamics friction="0"/>
+    </joint>
+    <joint name="joint1" type="revolute">
+        <origin rpy="0 0 0" xyz="-0.1141 0.0 0.0"/>
+        <parent link="base_link"/>
+        <child link="UP_P_1"/>
+        <axis xyz="-1.0 0.0 -0.0"/>
+        <limit effort="1000" velocity="5.0" lower="-2" upper="2"/>
+    </joint>
+    <joint name="joint2" type="revolute">
+        <origin rpy="0 0 0" xyz="0.031 -0.0 -0.165"/>
+        <parent link="UP_P_1"/>
+        <child link="Down_P_1"/>
+        <axis xyz="-1.0 -0.0 -0.0"/>
+        <limit effort="1000" velocity="5.0" lower="-2" upper="2"/>
+    </joint>
+    <joint name="joint3" type="revolute">
+        <origin rpy="0 0 0" xyz="0.1281 0.0 -2.6e-05"/>
+        <parent link="base_link"/>
+        <child link="UP_L_1"/>
+        <axis xyz="-1.0 0.0 -0.0"/>
+        <limit effort="1000" velocity="5.0" lower="-2" upper="2"/>
+    </joint>
+
+    <joint name="joint4" type="revolute">
+        <origin rpy="0 0 0" xyz="0.031 0.0 -0.165"/>
+        <parent link="UP_L_1"/>
+        <child link="Down_L_1"/>
+        <axis xyz="-1.0 0.0 -0.0"/>
+        <limit effort="1000" velocity="5.0" lower="-2" upper="2"/>
+    </joint>
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/biped</robotNamespace>
+        </plugin>
+    </gazebo>
+    <gazebo>
+        <plugin name="imu_plugin" filename="libgazebo_ros_imu.so">
+            <alwaysOn>true</alwaysOn>
+            <bodyName>base_link</bodyName>
+            <topicName>imu</topicName>
+            <serviceName>imu_service</serviceName>
+            <gaussianNoise>0.0</gaussianNoise>
+            <updateRate>20.0</updateRate>
+        </plugin>
+    </gazebo>
+</robot>

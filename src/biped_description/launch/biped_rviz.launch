@@ -1,0 +1,12 @@
+<launch>
+    <param name="robot_description" command="$(find xacro)/xacro $(find biped_description)/urdf/biped.xacro"/>
+
+    <!-- send fake joint values -->
+
+    <!-- Combine joint values -->
+
+
+    <!-- Show in Rviz   -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find biped_description)/launch/biped.rviz"/>
+
+</launch>
