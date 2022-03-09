@@ -26,7 +26,7 @@ $ source devel/setup.bash
 $ roslaunch biped_gazebo biped_world.launch 
 ```
 
-## What should be done
+## What should be done  (Updated on 09.03.2022)
 #### Calculate inverse kinematics of the leg knowing that:
 * hip length = 165mm
 * knee length = 240mm
